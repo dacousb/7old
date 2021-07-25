@@ -30,6 +30,8 @@ def getdesc(s):
 
 
 def docrawl(query, recrawl=True):
+    if len(query) > 100:
+        return
     try:
         # try to solve some common problems that cannot be handled by
         # the urllib
@@ -66,7 +68,7 @@ def docrawl(query, recrawl=True):
 
         # this crawls found urls inside the website itself
         # with a limit of 40 urls (you may change this limit)
-        # False avoid recursive (and usually infinite)
+        # False avoids recursive (and usually infinite)
         # crawling of found pages
         if recrawl:
             limit = 0
