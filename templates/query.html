@@ -48,6 +48,11 @@
         {% endfor %}
     </div>
     <div align="center">
+        {% for n in range(pgnum) %}
+        <a href="?q={{q}}&p={{n+1}}">{{n+1}}</a>
+        {% endfor %}
+    </div>
+    <div align="center">
         <p>©1999 dacousb - <a href="/about">about</a></p>
     </div>
 </body>

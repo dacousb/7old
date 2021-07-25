@@ -13,10 +13,22 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 @app.route("/")
 def index():
     query = request.args.get("q")
+    page = request.args.get("p")
     if query is None or not query.strip():
         return render_template("index.html")
     else:
-        return render_template("query.html", q=query, results=searchdb(query))
+        if page is None:
+            page = 1
+        else:
+            try:
+                page = int(page)
+            except:
+                page = 1
+        list = searchdb(query)
+        iperp = 10
+        start = 0 if page == 1 else iperp * (page - 1)
+        return render_template("query.html", q=query, results=list[start: start+iperp], pgnum=int(len(list)/iperp)+1)
+
 
 @app.route("/about")
 def about():
