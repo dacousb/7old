@@ -8,37 +8,41 @@ import sqlite3 as sl
 
 def savedb(sitedata):
     con = sl.connect("results.db")
+    cur = con.cursor()
     sql = "INSERT OR REPLACE INTO RESULT (title, url, desc) values(?, ?, ?)"
-    with con:
-        try:
-            con.execute(sql, sitedata)
-        except Exception as e:
-            print("[!] Error updating database ->", e)
+    try:
+        cur.execute(sql, sitedata)
+    except Exception as e:
+        print("[!] Error updating database ->", e)
+
+    con.commit()
+    con.close()
 
 
 def loaddb():
     # -db argument creates a new blank database
     con = sl.connect("results.db")
-    with con:
-        con.execute("""
-            CREATE TABLE RESULT (
-                title TEXT,
-                url TEXT UNIQUE,
-                desc TEXT
-            );
-        """)
+    cur = con.cursor()
+    cur.execute("""
+        CREATE TABLE RESULT (
+            title TEXT,
+            url TEXT UNIQUE,
+            desc TEXT
+        );
+    """)
     sql = "INSERT INTO RESULT (title, url, desc) values(?, ?, ?)"
     data = [
         ("Wikipedia", "https://www.wikipedia.org",
          "Wikipedia is a free online encyclopedia, created and edited by volunteers around the world and hosted by the Wikimedia Foundation.")
     ]
-    with con:
-        con.executemany(sql, data)
+    cur.executemany(sql, data)
 
-    with con:
-        rows = con.execute("SELECT * FROM RESULT")
-        for row in rows:
-            print(row)
+    rows = cur.execute("SELECT * FROM RESULT")
+    for row in rows:
+        print(row)
+
+    con.commit()
+    con.close()
 
 
 if len(sys.argv) == 2:
