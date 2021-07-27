@@ -1,0 +1,21 @@
+#-------------------------------#
+███████╗ ██████╗ ██╗     ██████╗ 
+╚════██║██╔═══██╗██║     ██╔══██╗
+    ██╔╝██║   ██║██║     ██║  ██║
+   ██╔╝ ██║   ██║██║     ██║  ██║
+   ██║  ╚██████╔╝███████╗██████╔╝
+   ╚═╝   ╚═════╝ ╚══════╝╚═════╝ 
+#-------------------------------#
+7old is a search engine for the World Wide
+Web, also known as the Internet.
+
+You can host your own instances, just
+keep the copyright notices. Not to mention
+that you need to follow the MIT license.
+
+7old has the following features:
+    - Database support
+    - Search and submit (to crawl) form
+    - Crawl a single website and its links
+      (you can configure it for crawling
+      indefinitely, but it's not recommended)
