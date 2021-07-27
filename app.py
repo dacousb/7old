@@ -27,7 +27,7 @@ def index():
         list = searchdb(query)
         iperp = 10
         start = 0 if page == 1 else iperp * (page - 1)
-        return render_template("query.html", q=query, results=list[start: start+iperp], pgnum=int(len(list)/iperp)+1)
+        return render_template("query.html", q=query, results=list[start: start+iperp], pgnum=int(len(list)/iperp)+1, resnum=len(list))
 
 
 @app.route("/about")
