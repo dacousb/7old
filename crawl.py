@@ -31,8 +31,14 @@ def docrawl(query, recrawl=True):
         soup = BeautifulSoup(str, 'html.parser')
         title = soup.find("title").string if soup.find(
             "title") else "No title provided"
+        # found a bug here with some websites
+        # here it is a fix
+        if title is None:
+            title = "No title provided"
         desc = soup.find("meta", attrs={"name": "description"})["content"] if soup.find(
             "meta", attrs={"name": "description"}) else "No description provided"
+        if desc is None:
+            title = "No description provided"
         savedb((title, query, desc))
 
         # now, crawl the rest of the website
