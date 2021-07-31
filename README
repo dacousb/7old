@@ -13,6 +13,12 @@ You can host your own instances, just
 keep the copyright notices. Not to mention
 that you need to follow the MIT license.
 
+First, create a blank database using
+`python table.py -db`
+
+Then, run the webserver with
+`flask run`
+
 7old has the following features:
     - Database support
     - Search and submit (to crawl) form
