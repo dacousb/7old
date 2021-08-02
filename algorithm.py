@@ -11,7 +11,14 @@ def searchdb(q):
     rows = cur.execute("SELECT * FROM RESULT ORDER BY title")
     result = []
     for row in rows:
-        if any(q in s for s in row):
+        if (q in row[1] # URL
+            and row[1].count('/') <= 3
+            and (row[1].count('.') == 1
+            or (row[1].startswith('https://www.')
+                and row[1].count('.') == 2))
+                and '?' not in row[1]):
+            result.insert(0, row)
+        elif any(q in s for s in row):
             result.append(row)
     con.close()
     return result
