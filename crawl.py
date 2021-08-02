@@ -29,14 +29,14 @@ def docrawl(query, recrawl=True):
         # the website has been reached (its contents too),
         # add it to the db then
         soup = BeautifulSoup(str, 'html.parser')
-        title = soup.find("title").string if soup.find(
-            "title") else "No title provided"
+        find = soup.find("title")
+        title = find.string if find else "No title provided"
         # found a bug here with some websites
         # here it is a fix
         if title is None:
             title = "No title provided"
-        desc = soup.find("meta", attrs={"name": "description"})["content"] if soup.find(
-            "meta", attrs={"name": "description"}) else "No description provided"
+        find = soup.find("meta", attrs={"name": "description"})
+        desc = find["content"] if find and "content" in find else "No description provided"
         if desc is None:
             title = "No description provided"
         savedb((title, query, desc))
