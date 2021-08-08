@@ -44,6 +44,6 @@ def new():
     else:
         if len(query) <= 100:
             docrawl(query)
-            return "Your URL has been submitted, it should be available for everyone in some minutes!"
+            return "Your URL has been submitted, it should be available for everyone!"
         else:
             return "That URL is over 100 characters long!"

@@ -11,7 +11,7 @@ def savedb(sitedata):
     cur = con.cursor()
     sql = "INSERT OR REPLACE INTO RESULT (title, url, desc) values(?, ?, ?)"
     try:
-        cur.execute(sql, sitedata)
+        cur.executemany(sql, [sitedata])
     except Exception as e:
         print("[!] Error updating database ->", e)
 
