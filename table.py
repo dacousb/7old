@@ -23,6 +23,7 @@ def loaddb():
     # -db argument creates a new blank database
     con = sl.connect("results.db")
     cur = con.cursor()
+    cur.execute("DROP TABLE IF EXISTS RESULT;")
     cur.execute("""
         CREATE TABLE RESULT (
             title TEXT,
