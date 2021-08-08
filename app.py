@@ -25,9 +25,10 @@ def index():
             except:
                 page = 1
         list = searchdb(query)
-        iperp = 10
-        start = 0 if page == 1 else iperp * (page - 1)
-        return render_template("query.html", q=query, results=list[start: start+iperp], pgnum=int(len(list)/iperp)+1, resnum=len(list))
+        start = 0 if page == 1 else 10 * (page - 1)
+        results = list[start: start+10]
+        pgnum = int(len(list)/10)+1
+        return render_template("query.html", q=query, results=results, pgnum=pgnum, resnum=len(list))
 
 
 @app.route("/about")
